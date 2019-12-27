@@ -708,7 +708,7 @@ else
         delay(5);
     }
 #endif
-*/
+//word */
 } 
 
 #ifdef WITH_LCD
