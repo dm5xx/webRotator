@@ -34,7 +34,7 @@ and a contents of `src/main.c`:
 
 int main (void)
 {
-  ...
+  ...ddd
 }
 
 ```
