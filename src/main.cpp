@@ -674,7 +674,7 @@ else
 
 #ifndef SIMULATION
     calculateFactorAndMiddle(); // middle and calculationFactorDeg are (re)calculated    
-    pinMode(RelayCWRightP6, OsUTPUT);   
+    pinMode(RelayCWRightP6, OUTPUT);   
     pinMode(RelayCCWLeftP7, OUTPUT);   
 
     digitalWrite(RelayCWRightP6, OFF);
