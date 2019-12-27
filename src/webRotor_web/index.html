@@ -1,0 +1,175 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Configparameters</title>
+	<link rel="stylesheet" type="text/css" href="view.css" media="all">
+	<script type="text/javascript" src="view.js"></script>
+
+</head>
+
+<body id="main_body">
+	<div id="form_container">
+		<h1><a>Configparameters</a></h1>
+		<form id="form" class="appnitro" action="javascript:;" onsubmit="generateUrl(this)">
+			<div class="form_description">
+				<h2>Configparameters</h2>
+				<p>This is your form description. Click here to edit.</p>
+			</div>
+			<ul>
+				<li id="li_0">
+					<label class="description" for="element_0">URL </label>
+					<div>
+						<input id="url" name="url" class="element text large" type="text" maxlength="255"
+							value="http://h.mmmedia-online.de/webRotator/rotator.html" />
+					</div>
+					<p class="guidelines" id="guide_1"><small>Change this to your websever or local file storage if needed</small></p>
+				</li>
+				<li id="li_1">
+					<label class="description" for="element_1">IP </label>
+					<div>
+						<input id="ip" name="ip" class="element text large" type="text" maxlength="255"
+							value="192.168.1.120" />
+					</div>
+					<p class="guidelines" id="guide_1"><small>Change the value to your current IP of the
+							webRotatorInterface like 192.168.1.120</small></p>
+				</li>
+				<li id="li_2">
+					<label class="description" for="element_2">StandardIntervalRotating </label>
+					<div>
+						<input id="sir" name="sir" class="element text large" type="text" maxlength="255"
+							value="1000" />
+					</div>
+					<p class="guidelines" id="guide_2"><small>The Time, how often the interface will be queried while
+							rotation to get values (>1000!!)</small></p>
+				</li>
+				<li id="li_3">
+					<label class="description" for="element_3">StandardIntervalTime </label>
+					<div>
+						<input id="sit" name="sit" class="element text large" type="text" maxlength="255"
+							value="10000" />
+					</div>
+					<p class="guidelines" id="guide_3"><small>The standard interval time, how often the
+							webRotatorInterface is queried liek a watchdog to get headings or changes</small></p>
+				</li>
+				<li id="li_4">
+					<label class="description" for="element_4">CeanupStandardIntervalTime </label>
+					<div>
+						<input id="csit" name="csit" class="element text large" type="text" maxlength="255"
+							value="30000" />
+					</div>
+					<p class="guidelines" id="guide_4"><small>How often will the cleanup function try to find some
+							changes due to oeverrunning, wind or remote action. (>30000)</small></p>
+				</li>
+				<li id="li_5">
+					<label class="description" for="element_5">CleanupLongRunIntervalTime </label>
+					<div>
+						<input id="clrit" name="clrit" class="element text large" type="text" maxlength="255"
+							value="900000" />
+					</div>
+					<p class="guidelines" id="guide_5"><small>If during the CleanupStandardInterval no changes detected,
+							it does not cleanup the Positions. Only after a long time like 15min (> 900000)</small></p>
+				</li>
+				<li id="li_6">
+					<label class="description" for="element_6">MakroDefinition </label>
+					<div>
+						<input id="shortcut" name="shortcut" class="element text large" type="text" maxlength="255"
+							value="1:0,2:45,3:90,4:135,5:180,6:225,7:270,8:315,9:20,0:350,x:110" />
+					</div>
+					<p class="guidelines" id="guide_6"><small>Define your own Keyboardshortcuts and to what heading they
+							shd point. Copy this into an editor, edit to your needs and put it back. Dont forget to save it in your editor for later use...</small></p>
+				</li>
+				<li id="li_7">
+					<label class="description" for="element_7">Debug-Mode </label>
+					<div>
+						<select class="element select large" id="debug" name="debug">
+							<option value="false" selected="selected">false</option>
+							<option value="true">true</option>
+						</select>
+					</div>
+					<p class="guidelines" id="guide_7"><small>Only change this if you want to get debug info to find
+							some errors</small></p>
+				</li>
+
+				<li class="buttons">
+					<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+				</li>
+			</ul>
+		</form>
+
+	<h1><a></a></h1>
+	<div class="form_description">
+		<br/>
+		<h2>Short Manual how to use and configure the client</h2>
+		<h3>Configparameters</h3>
+		<p>
+			<ul>
+				<li>
+					<b>URL:</b> This is the rare URI to the location of the rotator.html. This noramly hosted at http://h.mmmedia-online.de/webRotator/rotator.html.<br/>
+					Dont change it, unless you only want to host your file on your own server (URL) OR save it on your local disk (URL to File, e.g. file:///C:/Users/mmmedia/Google Drive/Funk/Software/RotateMe/rotator.html)
+				</li><br/>
+				<li>
+					<b>IP:</b> This is the IP adress, how your own webRotatorInterface can be reached. This can be a local IP like 192.168.1.120, this can be a global one like 188.194.221.12:88 or some DynDNS entry like dm5xx.dyndns.org:88<br/>
+					Keep in mind, if you are using global or DynDNS (to call your webRotatorInterface remote), Portforwarding has to be set up in your internet-router!
+				</li><br/>
+				<li>
+					<b>StandardIntervalRotating (in MS): </b> is the time between each looping request to the webRotatorInterface to get the current heading while rotation
+				</li><br/>
+				<li>
+					<b>StandardIntervalTime (in MS): </b> is the continuos time the webRotatorInterface is queried to get the current heading.
+				</li><br/>
+				<li>
+					<b>CeanupStandardIntervalTime (in MS): </b> is the time the webRotatorInterface is queried to get the current heading.
+				</li><br/>
+				<li>
+					<b>CleanupLongRunIntervalTime (in MS): </b>
+				</li><br/>
+				<li>
+					<b>MakroDefinition: </b> Keyboard Shortcuts keyname:heading
+				</li><br/>
+				<li>
+					<b>Debug: </b> true or false
+				</li><br/>
+			</ul>
+		</p>
+		<h3>Use the Client</h3>
+		<p>
+			<ul>
+				<li>
+					<b>First usage:</b> Remember your generated URL to the client. Its still in your clipboard. Open a new Tab in your browser and paste the URL with cntrl+v into the adress line.<br/>
+					Call the page by pressing Enter. If all is loaded correct, you will see the heading rose and some initialisation. Bookmark the url - the configuration from the configuration page will not be saved!
+				</li><br/>
+				<li>
+					<b>Left Cntrl+Mousclick:</b> Rotate to Mouse-Position
+				</li><br/>
+				<li>
+					<b>Left Alt:</b> Immediate stop
+				</li><br/>
+				<li>
+					<b>Keys defined in makro Definition: </b> Rotate to heading
+				</li><br/>
+				<li>
+					<b>StandardIntervalTime (in MS): </b> is the continuos time the webRotatorInterface is queried to get the current heading.
+				</li><br/>
+				<li>
+					<b>CeanupStandardIntervalTime (in MS): </b> is the time the webRotatorInterface is queried to get the current heading.
+				</li><br/>
+				<li>
+					<b>CleanupLongRunIntervalTime (in MS): </b>
+				</li><br/>
+				<li>
+					<b>MakroDefinition: </b> Keyboard Shortcuts keyname:heading
+				</li><br/>
+				<li>
+					<b>Debug: </b> true or false
+				</li><br/>
+			</ul>
+		</p>
+	</div>
+
+	</div>
+</body>
+
+</html>
