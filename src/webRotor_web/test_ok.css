@@ -1,0 +1,65 @@
+/* line 4, H:/portable/azicontrol/assets/scss/main.scss */
+html, body {
+    margin:0;
+    padding:0;
+    height:100%; 
+ }
+
+.pageWrapper
+{
+    margin: 0 auto;
+    border-width: 1px;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    display:block;
+    background: red; 
+    height:100%; 
+    width:100%;
+    background-image: url('cg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: contain;
+  
+}
+
+  
+  /* apply a natural box layout model to all elements, but allowing components to change */
+  /* line 13, H:/portable/azicontrol/assets/scss/main.scss */
+  html {
+    box-sizing: border-box;
+  }
+  
+  /* line 16, H:/portable/azicontrol/assets/scss/main.scss */
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+    
+  /* line 18, H:/portable/azicontrol/assets/scss/m-imageRotator.scss */
+  .rotator__background, .rotator__current, .rotator__target {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  /* line 36, H:/portable/azicontrol/assets/scss/m-imageRotator.scss */
+  .rotator__current {
+    background: transparent url(compass_rose_line.png) center center no-repeat;
+    background-size: cover;
+    zoom: 1;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    transition: all 1s linear;
+  }
+  
+  /* line 44, H:/portable/azicontrol/assets/scss/m-imageRotator.scss */
+  .rotator__target {
+    background: transparent url(compass_rose_line_green.png) center center no-repeat;
+    background-size: cover;
+    zoom: 1;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
