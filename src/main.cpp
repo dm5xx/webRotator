@@ -699,7 +699,7 @@ else
 /* other type of smoothing
 #ifndef SIMULATION
     int counter = 0;
-    while (counter < 30)
+    while (counter < 30) 
     {
         ADCFilter.SetCurrent(ADCFilter.Current());
         readPotiAndSetCurrentDegCurrentValue();
