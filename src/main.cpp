@@ -578,6 +578,32 @@ void WebServer()
     }
 }
 
+#ifdef WITH_LCD
+void setLCDValues(){
+
+        unsigned long currentMillis = millis();
+ 
+  if(currentMillis - previousMillis > interval) {
+    // save the last time you blinked the LED 
+    previousMillis = currentMillis;   
+ 
+
+
+        lcd.setCursor(5, 0);
+        lcd.print("      ");
+        lcd.setCursor(5, 0);
+        lcd.print(currentPostitionDeg);
+        lcd.setCursor(12, 0);
+        lcd.print(goToDeg);
+        lcd.setCursor(5, 1);
+        lcd.print("      ");
+        lcd.setCursor(5, 1);
+        lcd.print(currentPositionValue);
+  }      
+}
+#endif
+
+
 void turnCW()
 {
 #ifdef DEBUG
@@ -606,6 +632,10 @@ void turnCW()
 #ifdef DEBUG
         Serial.println(currentPostitionDeg);
 #endif
+#ifdef WITH_LCD
+        setLCDValues();
+#endif
+
         WebServer();
 #ifdef SIMULATION
         delay(300);
@@ -642,6 +672,9 @@ void turnCCW()
             currentPostitionDeg = 180;
 #ifdef DEBUG            
         Serial.println(currentPostitionDeg);
+#endif
+#ifdef WITH_LCD
+        setLCDValues();
 #endif
         WebServer();
 #ifdef SIMULATION
@@ -749,21 +782,6 @@ else
 //word */
 } 
 
-#ifdef WITH_LCD
-void setLCDValues(){
-
-        lcd.setCursor(5, 0);
-        lcd.print("      ");
-        lcd.setCursor(5, 0);
-        lcd.print(currentPostitionDeg);
-        lcd.setCursor(12, 0);
-        lcd.print(goToDeg);
-        lcd.setCursor(5, 1);
-        lcd.print("      ");
-        lcd.setCursor(5, 1);
-        lcd.print(currentPositionValue);
-}
-#endif
 
 void loop()
 {
@@ -791,13 +809,6 @@ void loop()
     }
 
 #ifdef WITH_LCD
-    unsigned long currentMillis = millis();
- 
-  if(currentMillis - previousMillis > interval) {
-    // save the last time you blinked the LED 
-    previousMillis = currentMillis;   
         setLCDValues();
- 
-     }
 #endif
 }
