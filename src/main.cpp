@@ -2,12 +2,15 @@
 //#define DEBUG_READPOTIVALUES
 //#define DEBUG_DISABLE_EEPROM_READ
 //#define DEBUG_DISABLE_EEPROM_WRITE
-//#define DEBUG
+#define DEBUG
 //#define SIMULATION
 #define WITH_LCD
 
 #include <SPI.h>
 #include <Ethernet.h>
+#ifdef DEBUG
+    #include <utility/w5100.h>
+#endif
 #include <EEPROMex.h>
 #include "SoftReset.h"
 #include <Wire.h>
@@ -79,6 +82,39 @@ bool isConfigMode = false;
     long interval = 1000;           // interval at which to blink (milliseconds)
 #endif
 
+#ifdef DEBUG
+    byte socketStat[MAX_SOCK_NUM];
+
+void ShowSockStatus()
+{
+    for (int i = 0; i < MAX_SOCK_NUM; i++) {
+        Serial.print(F("Socket#"));
+        Serial.print(i);
+        uint8_t s = W5100.readSnSR(i);
+        socketStat[i] = s;
+        Serial.print(F(":0x"));
+        Serial.print(s,16);
+        Serial.print(F(" "));
+        Serial.print(W5100.readSnPORT(i));
+        Serial.print(F(" D:"));
+        uint8_t dip[4];
+        W5100.readSnDIPR(i, dip);
+        for (int j=0; j<4; j++) {
+        Serial.print(dip[j],10);
+        if (j<3) Serial.print(".");
+        }
+        Serial.print(F("("));
+        Serial.print(W5100.readSnDPORT(i));
+        Serial.println(F(")"));
+    }
+}
+
+int freeRam () {
+  extern int __heap_start, *__brkval;
+  int v;
+  return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);
+}
+#endif
 
 
 #ifdef DEBUG_SERIALSETUP
@@ -351,6 +387,8 @@ void WebServer()
     {
 #ifdef DEBUG
         Serial.println("new client");
+        Serial.println(freeRam()); 
+        ShowSockStatus();
         // an http request ends with a blank line
 #endif
         boolean currentLineIsBlank = true;
@@ -674,7 +712,7 @@ else
 
 #ifndef SIMULATION
     calculateFactorAndMiddle(); // middle and calculationFactorDeg are (re)calculated    
-    pinMode(RelayCWRightP6, OsUTPUT);   
+    pinMode(RelayCWRightP6, OUTPUT);   
     pinMode(RelayCCWLeftP7, OUTPUT);   
 
     digitalWrite(RelayCWRightP6, OFF);

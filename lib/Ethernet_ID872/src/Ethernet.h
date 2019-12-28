@@ -36,7 +36,7 @@
 #if defined(RAMEND) && defined(RAMSTART) && ((RAMEND - RAMSTART) <= 2048)
 #define MAX_SOCK_NUM 4
 #else
-#define MAX_SOCK_NUM 8
+#define MAX_SOCK_NUM 4
 #endif
 
 // By default, each socket uses 2K buffers inside the Wiznet chip.  If
