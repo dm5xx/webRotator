@@ -1,7 +1,7 @@
-//#define DEBUG_SERIALSETUP
+#define DEBUG_SERIALSETUP // enable Debugging in serial monitor
 //#define DEBUG_READPOTIVALUES
-//#define DEBUG_DISABLE_EEPROM_READ
-//#define DEBUG_DISABLE_EEPROM_WRITE
+#define DEBUG_DISABLE_EEPROM_READ // COMMENT THIS OUT, IF YOU WANT TO SET VALUE FROM OUTSIDE to EEPROM. See eepromconfig.txt
+#define DEBUG_DISABLE_EEPROM_WRITE // // COMMENT THIS OUT, IF YOU WANT TO SET VALUE FROM OUTSIDE to EEPROM. See eepromconfig.txt
 #define DEBUG
 //#define SIMULATION
 #define WITH_LCD
@@ -49,19 +49,19 @@ byte mac[] = {
     0xFE,
     0x66};
 
-int ip1 = 192;
-int ip2 = 168;
-int ip3 = 1;
-int ip4 = 66;
-byte isDHCP = 3;
+int ip1 = 192; // CHANGE THIS. If you dont want DHCP. Use the desired values...
+int ip2 = 168; // CHANGE THIS. If you dont want DHCP. Use the desired values...
+int ip3 = 97; // CHANGE THIS. If you dont want DHCP. Use the desired values...
+int ip4 = 66; // CHANGE THIS. If you dont want DHCP. Use the desired values...
+byte isDHCP = 2; // CHANGE THIS. DHCP => 3, STATIC => 2
 
 EthernetServer server(80);
 String readString = ""; // string for fetching data from address
 String cmd = "";
 
 
-int ccwleftLimit = 200;
-int cwrightLimit = 800;
+int ccwleftLimit = 0; // CHANGE THIS. if you rotate counter clock wise this is the roatating left limits value... e.g. 0
+int cwrightLimit = 1023; // CHANGE THIS. if you rotate clock wise this is the roatating right limits value... e.g. 1023
 float middle = 0;
 float calculationFactorDeg = 0;
 
@@ -607,7 +607,7 @@ void setLCDValues(){
 void turnCW()
 {
 #ifdef DEBUG
-    Serial.println("Ich drehe mich im Uhrzeigersinn");
+    Serial.println("Turning clockwise");
 #endif
     while (!isStopped && currentPositionValue < goToValue)
     {
@@ -623,9 +623,9 @@ void turnCW()
 #endif
         status = STATUS_TURNING_CWRIGHT1;
 #ifdef DEBUG        
-        Serial.print("Bin gerade ");
+        Serial.print("I am at ");
         Serial.print(currentPositionValue);
-        Serial.print(" Bin Deg ");
+        Serial.print(" i am deg ");
 #endif
         if (currentPostitionDeg == -1)
             currentPostitionDeg = 180;
@@ -647,7 +647,7 @@ void turnCW()
 void turnCCW()
 {
 #ifdef DEBUG
-    Serial.println("Ich drehe mich gegen Uhrzeigersinn");
+    Serial.println("Im turning counter clock wise");
 #endif
     while (!isStopped && currentPositionValue > goToValue)
     {
@@ -664,9 +664,9 @@ void turnCCW()
 #endif
         status = STATUS_TURNING_CCWLEFT0;
 #ifdef DEBUG
-        Serial.print("Bin gerade ");
+        Serial.print("I am at ");
         Serial.print(currentPositionValue);
-        Serial.print(" Bin Deg ");
+        Serial.print(" i am at Deg ");
 #endif
         if (currentPostitionDeg == -1)
             currentPostitionDeg = 180;
@@ -704,7 +704,7 @@ void setup()
   
     lcd.print("Deg: ");
     lcd.setCursor(0, 1);
-    lcd.print("Wert: ");
+    lcd.print("Value: ");
 #endif 
 
 #ifdef DEBUG
@@ -789,7 +789,7 @@ void loop()
     if (isTurningActionCalled == true && currentPostitionDeg != goToDeg)
     {
 #ifdef DEBUG
-        Serial.print("Ich muss drehen!");
+        Serial.print("I need to turn!");
 #endif
         goToValue = GetValueByDegSouth(goToDeg);
         int turningDirection = getTurningDirectionByValue(goToValue);

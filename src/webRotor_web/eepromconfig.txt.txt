@@ -1,0 +1,34 @@
+This has to be done, if u use this in the sketch:
+//#define DEBUG_DISABLE_EEPROM_READ
+//#define DEBUG_DISABLE_EEPROM_WRITE
+
+HINT: If you want to set your valuesin the sketch, you must uncommand bos line to
+#define DEBUG_DISABLE_EEPROM_READ
+#define DEBUG_DISABLE_EEPROM_WRITE
+EEPROM will be not used. Sketch values will be used.
+
+
+Fire the commands you want to set:
+
+0. Put the webRotator into config mode:
+http://192.168.97.66/CONF/1
+
+1. DHCP or STATIC IP
+Use this to enable DHCP: http://192.168.97.66/DHCP/3
+Use this to enable Static: http://192.168.97.66/DHCP/2
+
+2. If you choose static, you need to set the IP adress with those cmds...
+
+http://192.168.97.66/E1/192
+http://192.168.97.66/E1/168
+http://192.168.97.66/E1/97
+http://192.168.97.66/E1/66
+
+3. Set the CCW-Limit
+http://192.168.97.66/CC/0
+
+4. Set the CCW-Limit
+http://192.168.97.66/CW/1023
+
+5. DONT FORGET TO SAVE THE EEPROM VALUES!!!!!
+http://192.168.97.66/EWRT/1

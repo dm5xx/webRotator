@@ -250,6 +250,7 @@ $(document).ready(function(){
     getCurrentHeading();
         
     window.setTimeout(function() {
+        RotationManager();
         rotate($('.rotator__current'), responseHeading);
         rotate($('.rotator__target'), responseHeading);    
         goToHeading = responseHeading;

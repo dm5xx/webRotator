@@ -1,5 +1,5 @@
 // default implemantion
-let url =  '192.168.1.123'; // change this to the ip of your webRotator or add ?ip=192.168.1.123 to the url - but just the ip! no "http.." or somethign else.. :P
+let url =  '192.168.97.66'; // change this to the ip of your webRotator or add ?ip=192.168.1.123 to the url - but just the ip! no "http.." or somethign else.. :P
 
 // default implementation
 let debug = false;
