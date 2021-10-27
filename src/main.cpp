@@ -392,8 +392,19 @@ void WebServer()
         // an http request ends with a blank line
 #endif
         boolean currentLineIsBlank = true;
+
+        // connectLoop controls the hardware fail timeout
+        int connectLoop = 0;
+
         while (client.connected())
         {
+            connectLoop++;
+
+            if(connectLoop > 10000)
+            {
+                client.stop();
+            };
+
             if (client.available())
             {
                 char c = client.read();
@@ -513,6 +524,8 @@ void WebServer()
                             readPotiAndSetCurrentDegCurrentValue();
 #endif                        
                             isTurningActionCalled = false;
+                        
+                        connectLoop = 0;
                         break;
                     }
 
@@ -556,6 +569,7 @@ void WebServer()
                     }
                     
                     client.print("}");
+                    connectLoop = 0;
                     break;
                 }
                 if (c == '\n')
